@@ -1,9 +1,11 @@
 ENV["RAILS_ENV"] = "test"
-
-require "dummy/config/environment"
+require 'rails/all'
 require "rails/test_help"
-
 require "pagy_cursor"
+require "dummy/config/environment"
+
+ActiveRecord::Migration.maintain_test_schema!
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
