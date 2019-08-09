@@ -1,9 +1,15 @@
 ENV["RAILS_ENV"] = "test"
-
-require "dummy/config/environment"
+ENV["DB"] ||= "sqlite3"
+require 'rails/all'
 require "rails/test_help"
-
 require "pagy_cursor"
+require "dummy/config/environment"
+
+ActiveRecord::Migration.verbose = false
+ActiveRecord::Tasks::DatabaseTasks.drop_current 'test'
+ActiveRecord::Tasks::DatabaseTasks.create_current 'test'
+ActiveRecord::Migration.maintain_test_schema!
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
