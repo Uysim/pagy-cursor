@@ -1,5 +1,6 @@
 
 # PagyCursor
+![](https://travis-ci.org/Uysim/pagy-cursor.svg?branch=master)
 
 Extra [Pagy](https://github.com/ddnexus/pagy) to work with cursor pagination
 
@@ -20,8 +21,8 @@ And then execute:
 
 Include the backend in some controller:
 ```ruby
-require 'pagy_cursor/pagy/extras/cursor'
-require 'pagy_cursor/pagy/extras/uuid_cursor'
+require "pagy_cursor"
+
 include Pagy::Backend
 ```
 Default
