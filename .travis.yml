@@ -15,6 +15,11 @@ rvm:
   - 2.4.5
   - 2.3.8
 
+gemfile:
+  - gemfiles/active_record_52.gemfile
+  - gemfiles/active_record_51.gemfile
+  - gemfiles/active_record_50.gemfile
+
 env:
   - DB=sqlite3
   - DB=postgresql
