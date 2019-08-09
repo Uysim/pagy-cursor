@@ -5,6 +5,9 @@ require "rails/test_help"
 require "pagy_cursor"
 require "dummy/config/environment"
 
+ActiveRecord::Migration.verbose = false
+ActiveRecord::Tasks::DatabaseTasks.drop_current 'test'
+ActiveRecord::Tasks::DatabaseTasks.create_current 'test'
 ActiveRecord::Migration.maintain_test_schema!
 
 
