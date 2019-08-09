@@ -1,14 +1,29 @@
+
 sudo: false
+
 language: ruby
+
 cache: bundler
+
 services:
   - postgresql
   - mysql
+
 rvm:
-  - 2.5.1
+  - 2.6.3
+  - 2.5.5
+  - 2.4.5
+  - 2.3.8
+
+gemfile:
+  - gemfiles/active_record_52.gemfile
+  - gemfiles/active_record_51.gemfile
+  - gemfiles/active_record_50.gemfile
+
 env:
   - DB=sqlite3
   - DB=postgresql
   - DB=mysql
+
 before_install: gem install bundler -v 1.17.3
 script: bundle exec rspec

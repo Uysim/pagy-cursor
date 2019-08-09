@@ -9,3 +9,7 @@
 
 # rspec failure tracking
 .rspec_status
+
+gemfiles/*.lock
+log
+*.sqlite3
