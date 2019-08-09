@@ -3,7 +3,12 @@ language: ruby
 cache: bundler
 services:
   - postgresql
+  - mysql
 rvm:
   - 2.5.1
+env:
+  - DB=sqlite3
+  - DB=postgresql
+  - DB=mysql
 before_install: gem install bundler -v 1.17.3
 script: bundle exec rspec

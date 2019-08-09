@@ -19,4 +19,4 @@ mysql: &mysql
   database: pagy_test
 
 test:
-  <<: *sqlite3
+  <<: *<%= ENV['DB'] %>
