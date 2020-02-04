@@ -30,6 +30,8 @@ class Pagy
     end
 
     def pagy_cursor_has_more?(collection, pagy)
+      return false if collection.empty?
+
       next_position = collection.last[pagy.primary_key]
       pagy_cursor_get_items(collection, pagy, next_position).exists?
     end
