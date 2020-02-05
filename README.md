@@ -40,6 +40,14 @@ pagy_uuid_cursor(Post.all, after: "ce5d2741-4e52-49b2-bb76-c41b67ab3aad")
 pagy_uuid_cursor(Post.all, before: "ce5d2741-4e52-49b2-bb76-c41b67ab3aad")
 ```
 
+## Credits
+
+Many thanks to:
+
+- [Uysim](https://github.com/Uysim)
+- [Eumir Gaspar](https://github.com/corroded)
+
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
