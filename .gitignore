@@ -13,3 +13,5 @@
 gemfiles/*.lock
 log
 *.sqlite3
+
+spec/dummy/tmp
