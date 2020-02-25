@@ -63,10 +63,12 @@ Many thanks to:
 
 To run tests in root folder of gem:
 
-- ```export BUNDLE_GEMFILE=gemfiles/active_record_52.gemfile``` to work with Rails 5.2
 - ```export DB=sqlite3``` to work with sqlite (see [support databases](#support-databases))
 - ```bundle install```
 - ```bundle exec rspec ```
+
+To test on specific Rails verison
+```export BUNDLE_GEMFILE=gemfiles/active_record_5.2.gemfile``` to work with Rails 5.2
 
 To play with app cd test/dummy and rails s -b 0.0.0.0 (before rails db:migrate).
 
