@@ -19,6 +19,7 @@ gemfile:
   - gemfiles/active_record_52.gemfile
   - gemfiles/active_record_51.gemfile
   - gemfiles/active_record_50.gemfile
+  - gemfiles/active_record_60.gemfile
 
 env:
   - DB=sqlite3
