@@ -12,6 +12,8 @@ class Pagy
       @after = vars[:after]
       @arel_table = vars[:arel_table]
       @primary_key = vars[:primary_key]
+      @reorder = vars[:order] || {}
+
       if @before.present? and @after.present?
         raise(ArgumentError, 'before and after can not be both mentioned')
       end
@@ -20,23 +22,23 @@ class Pagy
 
         @comparation = 'lt' # arel table less than
         @position = @before
-        @order = { :created_at => :desc , @primary_key => :desc }
+        @order = @reorder.merge({ :created_at => :desc , @primary_key => :desc })
 
         if @after.present?
           @comparation = 'gt' # arel table greater than
           @position = @after
-          @order = { :created_at => :asc , @primary_key => :asc }
+          @order = @reorder.merge({ :created_at => :asc , @primary_key => :asc })
         end
       else
 
         @comparation = 'lt'
         @position = @before
-        @order = { @primary_key => :desc }
+        @order = @reorder.merge({ @primary_key => :desc })
 
         if @after.present?
           @comparation = 'gt'
           @position = @after
-          @order = { @primary_key => :asc }
+          @order = @reorder.merge({ @primary_key => :asc })
         end
       end
     end
