@@ -47,6 +47,11 @@ pagy_uuid_cursor(Post.all, after: "ce5d2741-4e52-49b2-bb76-c41b67ab3aad")
 pagy_uuid_cursor(Post.all, before: "ce5d2741-4e52-49b2-bb76-c41b67ab3aad")
 ```
 
+Ordering collection
+```ruby
+pagy_cursor(Post.all, after: 10, order: {updated_at: :desc})
+```
+
 ## Credits
 
 Many thanks to:
