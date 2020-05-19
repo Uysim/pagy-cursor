@@ -24,7 +24,7 @@ class Pagy
         @position = @before
         @order = @reorder.merge({ :created_at => :desc , @primary_key => :desc })
 
-        if @after.present?
+        if @after.present? || (@reorder.present? && @reorder.values.uniq.first.to_sym == :asc)
           @comparation = 'gt' # arel table greater than
           @position = @after
           @order = @reorder.merge({ :created_at => :asc , @primary_key => :asc })
@@ -35,7 +35,7 @@ class Pagy
         @position = @before
         @order = @reorder.merge({ @primary_key => :desc })
 
-        if @after.present?
+        if @after.present? || (@reorder.present? && @reorder.values.uniq.first.to_sym == :asc)
           @comparation = 'gt'
           @position = @after
           @order = @reorder.merge({ @primary_key => :asc })
