@@ -11,9 +11,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-      
-    - name: Publish gem
-      uses: dawidd6/action-publish-gem@v1
+    - name: Set up Ruby 2.6
+      uses: actions/setup-ruby@v1
       with:
-        api_key: ${{secrets.RUBYGEMS_API_KEY}}
+        version: 2.6.x
 
+    - name: Publish to RubyGems
+      run: |
+        mkdir -p $HOME/.gem
+        touch $HOME/.gem/credentials
+        chmod 0600 $HOME/.gem/credentials
+        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+        gem build *.gemspec
+        gem push *.gem
+      env:
+        GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_API_KEY}}
