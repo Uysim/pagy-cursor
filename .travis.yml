@@ -9,42 +9,11 @@ services:
   - postgresql
   - mysql
 
-matrix:
-  include:
-    - rvm: 2.6
-      gemfile: gemfiles/active_record_60.gemfile
-    - rvm: 2.6
-      gemfile: gemfiles/active_record_52.gemfile
-    - rvm: 2.6
-      gemfile: gemfiles/active_record_51.gemfile
-    - rvm: 2.6
-      gemfile: gemfiles/active_record_50.gemfile
-
-    - rvm: 2.5
-      gemfile: gemfiles/active_record_60.gemfile
-    - rvm: 2.5
-      gemfile: gemfiles/active_record_52.gemfile
-    - rvm: 2.5
-      gemfile: gemfiles/active_record_51.gemfile
-    - rvm: 2.5
-      gemfile: gemfiles/active_record_50.gemfile
-
-    - rvm: 2.4
-      gemfile: gemfiles/active_record_52.gemfile
-    - rvm: 2.4
-      gemfile: gemfiles/active_record_51.gemfile
-    - rvm: 2.4
-      gemfile: gemfiles/active_record_50.gemfile
-
-
-    - rvm: 2.3
-      gemfile: gemfiles/active_record_52.gemfile
-    - rvm: 2.3
-      gemfile: gemfiles/active_record_51.gemfile
-    - rvm: 2.3
-      gemfile: gemfiles/active_record_50.gemfile
-
-
+gemfile:
+  - gemfiles/active_record_60.gemfile
+  - gemfiles/active_record_52.gemfile
+  - gemfiles/active_record_51.gemfile
+  - gemfiles/active_record_50.gemfile
 
 env:
   - DB=sqlite3
@@ -52,4 +21,15 @@ env:
   - DB=mysql
 
 before_install: gem install bundler
+install: bundle install --jobs=3 --retry=3 --no-deployment
 script: bundle exec rspec
+
+
+matrix:
+  exclude:
+    - rvm: 2.4
+      gemfile: gemfiles/active_record_60.gemfile
+    - rvm: 2.3
+      gemfile: gemfiles/active_record_60.gemfile
+
+
