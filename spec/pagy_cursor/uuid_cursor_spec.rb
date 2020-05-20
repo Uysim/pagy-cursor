@@ -62,4 +62,32 @@ RSpec.describe PagyCursor do
       expect(pagy.has_more?).to eq(false)
     end
   end
+
+  context 'with ordered records' do
+    before do
+      Post.destroy_all
+      1.upto(100) do |i|
+        Post.create!(title: "post#{i}", created_at: (100-i).minutes.ago)
+      end
+      post = Post.find_by(title: "post91")
+      post.update(title: "This is post91")
+    end
+
+    it "paginates with defaults" do
+      pagy, records = backend.send(
+        :pagy_uuid_cursor,
+        Post.all,
+        order: {
+          updated_at: :desc
+        }
+      )
+      expect(records.map(&:title)).to eq(
+        ["This is post91", "post100", "post99", "post98", "post97", "post96",
+         "post95", "post94", "post93", "post92",
+         "post90", "post89", "post88", "post87", "post86",
+         "post85", "post84", "post83", "post82", "post81"])
+      expect(pagy.has_more?).to eq(true)
+      expect(pagy.order[:updated_at]).to eq(:desc)
+    end
+  end
 end
