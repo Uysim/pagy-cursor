@@ -55,8 +55,8 @@ pagy_cursor(Post.all, after: 10, order: {updated_at: :desc})
 ## Credits
 
 Many thanks to:
-
 - [Uysim](https://github.com/Uysim)
+- [M. Yunan Helmy](https://github.com/yunanhelmy)
 - [Eumir Gaspar](https://github.com/corroded)
 
 ## Support Databases
