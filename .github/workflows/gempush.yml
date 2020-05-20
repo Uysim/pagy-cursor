@@ -1,0 +1,19 @@
+name: Ruby Gem
+
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    name: Build + Publish
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Publish gem
+      uses: dawidd6/action-publish-gem@v1
+      with:
+        api_key: ${{secrets.RUBYGEMS_API_KEY}}
+
