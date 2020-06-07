@@ -23,7 +23,7 @@ Include the backend in some controller:
 
 ```ruby
 require "pagy_cursor/pagy/extras/cursor"
-require "pagy_cursor/pagy/extras/cursor_uuid"
+require "pagy_cursor/pagy/extras/uuid_cursor"
 
 include Pagy::Backend
 ```
