@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pagy_cursor (0.1.1)
+    pagy_cursor (0.2.0)
       activerecord (>= 5)
       pagy
 
@@ -89,7 +89,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    pagy (3.7.3)
+    pagy (3.8.2)
     pg (1.2.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
