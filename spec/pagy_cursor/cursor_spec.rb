@@ -70,6 +70,7 @@ RSpec.describe Pagy::Backend do
       1.upto(100) do |i|
         User.create!(name: "user#{i}")
       end
+      sleep 1
       user = User.find_by name: "user81"
       user.update(name: "I am user81")
     end

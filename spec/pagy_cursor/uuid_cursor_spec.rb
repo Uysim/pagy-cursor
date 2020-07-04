@@ -69,6 +69,7 @@ RSpec.describe PagyCursor do
       1.upto(100) do |i|
         Post.create!(title: "post#{i}", created_at: (100-i).minutes.ago)
       end
+      sleep 1
       post = Post.find_by(title: "post91")
       post.update(title: "This is post91")
     end
