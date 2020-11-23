@@ -10,7 +10,7 @@ class Pagy
       items =  pagy_cursor_get_items(collection, pagy, pagy.position)
       pagy.has_more =  pagy_cursor_has_more?(items, pagy)
 
-      return pagy, items
+      return pagy, items[0..pagy.items-1]
     end
 
     def pagy_cursor_get_vars(collection, vars)
@@ -23,17 +23,16 @@ class Pagy
     def pagy_cursor_get_items(collection, pagy, position=nil)
       if position.present?
         sql_comparation = pagy.arel_table[pagy.primary_key].send(pagy.comparation, position)
-        collection.where(sql_comparation).reorder(pagy.order).limit(pagy.items)
+        collection.where(sql_comparation).reorder(pagy.order).limit(pagy.items + 1)
       else
-        collection.reorder(pagy.order).limit(pagy.items)
+        collection.reorder(pagy.order).limit(pagy.items + 1)
       end
     end
 
     def pagy_cursor_has_more?(collection, pagy)
       return false if collection.empty?
 
-      next_position = collection.last[pagy.primary_key]
-      pagy_cursor_get_items(collection, pagy, next_position).exists?
+      collection.size > pagy.items
     end
   end
 end

@@ -9,7 +9,7 @@ class Pagy
       items =  pagy_uuid_cursor_get_items(collection, pagy, pagy.position)
       pagy.has_more =  pagy_uuid_cursor_has_more?(items, pagy)
 
-      return pagy, items
+      return pagy, items[0..pagy.items-1]
     end
 
     def pagy_uuid_cursor_get_vars(collection, vars)
@@ -29,14 +29,13 @@ class Pagy
 
         collection = collection.where(sql_comparation)
       end
-      collection.reorder(pagy.order).limit(pagy.items)
+      collection.reorder(pagy.order).limit(pagy.items + 1)
     end
 
     def pagy_uuid_cursor_has_more?(collection, pagy)
       return false if collection.empty?
 
-      next_position = collection.last[pagy.primary_key]
-      pagy_uuid_cursor_get_items(collection, pagy, next_position).exists?
+      collection.size > pagy.items
     end
   end
 end
