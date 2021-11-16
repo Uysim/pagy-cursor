@@ -6,16 +6,16 @@ sqlite3: &sqlite3
 
 postgresql: &postgresql
   adapter: postgresql
-  host: localhost
+  host: <%= ENV.fetch("DB_HOST", 'localhost') %>
   username: postgres
-  password:
+  password: <%= ENV["DB_PASSWORD"] %>
   database: pagy_test
 
 mysql: &mysql
   adapter: mysql2
-  host: localhost
+  host: <%= ENV.fetch("DB_HOST", '127.0.0.1') %>
   username: root
-  password:
+  password: <%= ENV["DB_PASSWORD"] %>
   database: pagy_test
 
 test:
