@@ -1,6 +1,5 @@
 
 # PagyCursor
-![](https://travis-ci.org/Uysim/pagy-cursor.svg?branch=master)
 
 Extra [Pagy](https://github.com/ddnexus/pagy) to work with cursor pagination
 
