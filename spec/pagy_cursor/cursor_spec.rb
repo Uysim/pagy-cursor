@@ -55,7 +55,7 @@ RSpec.describe Pagy::Backend do
       expect(pagy.has_more?).to eq(true)
     end
 
-    it "paginates with before nearly starting" do
+    it "paginates with after nearly ending" do
       record = User.find_by! name: "user90"
       pagy, records = backend.send(:pagy_cursor, User.all, after: record.id)
       expect(records.first.name).to eq("user91")
