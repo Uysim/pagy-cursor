@@ -9,7 +9,7 @@ class Pagy
       items =  pagy_uuid_cursor_get_items(collection, pagy, pagy.position)
       pagy.has_more =  pagy_uuid_cursor_has_more?(items, pagy)
 
-      return pagy, items[0..pagy.items-1]
+      return pagy, items.limit(pagy.items)
     end
 
     def pagy_uuid_cursor_get_vars(collection, vars)

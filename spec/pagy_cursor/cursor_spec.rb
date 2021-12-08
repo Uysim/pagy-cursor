@@ -62,6 +62,12 @@ RSpec.describe Pagy::Backend do
       expect(records.last.name).to eq("user100")
       expect(pagy.has_more?).to eq(false)
     end
+
+    it 'is lazy' do
+     _, records = backend.send(:pagy_cursor, User.all)
+
+      expect(records).to be_a(ActiveRecord::Relation)
+    end
   end
 
   context 'with ordered records' do

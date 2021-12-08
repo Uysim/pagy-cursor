@@ -1,9 +1,9 @@
 PATH
   remote: .
   specs:
-    pagy_cursor (0.2.0)
+    pagy_cursor (0.2.1)
       activerecord (>= 5)
-      pagy
+      pagy (< 5)
 
 GEM
   remote: https://rubygems.org/
@@ -81,7 +81,9 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
-    mimemagic (0.3.4)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_mime (1.0.2)
     mini_portile2 (2.6.1)
     minitest (5.14.0)
@@ -90,7 +92,7 @@ GEM
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
-    pagy (3.8.2)
+    pagy (4.11.0)
     pg (1.2.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -171,4 +173,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.1.4
+   2.2.29
