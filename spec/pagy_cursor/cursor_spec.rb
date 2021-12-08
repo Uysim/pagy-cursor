@@ -63,7 +63,7 @@ RSpec.describe Pagy::Backend do
       expect(pagy.has_more?).to eq(false)
     end
 
-    it 'is lazy' do
+    it 'returns a chainable relation' do
      _, records = backend.send(:pagy_cursor, User.all)
 
       expect(records).to be_a(ActiveRecord::Relation)
