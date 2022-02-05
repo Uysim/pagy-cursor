@@ -62,15 +62,22 @@ RSpec.describe Pagy::Backend do
       expect(records.last.name).to eq("user100")
       expect(pagy.has_more?).to eq(false)
     end
+
+    it 'returns a chainable relation' do
+      _, records = backend.send(:pagy_cursor, User.all)
+ 
+      expect(records).to be_a(ActiveRecord::Relation)
+    end
   end
 
   context 'with ordered records' do
     before do
-      User.destroy_all
+      User.delete_all
+
       1.upto(100) do |i|
         User.create!(name: "user#{i}")
       end
-      sleep 1
+      sleep 1 # delay for mysql timestamp
       user = User.find_by name: "user81"
       user.update(name: "I am user81")
     end

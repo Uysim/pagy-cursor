@@ -61,6 +61,12 @@ RSpec.describe PagyCursor do
       expect(records.last.title).to eq("post100")
       expect(pagy.has_more?).to eq(false)
     end
+
+    it 'returns a chainable relation' do
+      _, records = backend.send(:pagy_cursor, User.all)
+ 
+      expect(records).to be_a(ActiveRecord::Relation)
+    end
   end
 
   context 'with ordered records' do
@@ -69,7 +75,7 @@ RSpec.describe PagyCursor do
       1.upto(100) do |i|
         Post.create!(title: "post#{i}", created_at: (100-i).minutes.ago)
       end
-      sleep 1
+      sleep 1 # delay for mysql timestamp
       post = Post.find_by(title: "post91")
       post.update(title: "This is post91")
     end

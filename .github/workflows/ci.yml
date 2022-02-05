@@ -34,9 +34,12 @@ jobs:
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_52.gemfile
-          - ruby-version: 3.0
+          - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_60.gemfile
+          - ruby-version: 3.0
+            env:
+              BUNDLE_GEMFILE: gemfiles/active_record_61.gemfile
 
       fail-fast: false
     env: ${{ matrix.env }}
