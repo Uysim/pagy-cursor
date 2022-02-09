@@ -6,8 +6,8 @@ class Pagy
     alias_method :has_more?, :has_more
 
     def initialize(vars)
-      @vars = VARS.merge(vars.delete_if{|_,v| v.nil? || v == '' })
-      @items = vars[:items] || VARS[:items]
+      @vars = DEFAULT.merge(vars.delete_if{|_,v| v.nil? || v == '' })
+      @items = vars[:items] || DEFAULT[:items]
       @before = vars[:before]
       @after = vars[:after]
       @arel_table = vars[:arel_table]
