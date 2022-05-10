@@ -10,6 +10,7 @@ RSpec.describe Pagy::Backend do
       pagy, records = backend.send(:pagy_cursor, User.all)
       expect(records).to be_empty
       expect(pagy.has_more?).to eq(false)
+      expect(pagy.next_position).to be(nil)
     end
   end
 
@@ -29,6 +30,7 @@ RSpec.describe Pagy::Backend do
          "user90", "user89", "user88", "user87", "user86",
          "user85", "user84", "user83", "user82", "user81"])
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with before" do
@@ -37,6 +39,7 @@ RSpec.describe Pagy::Backend do
       expect(records.first.name).to eq("user29")
       expect(records.last.name).to eq("user10")
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with before nearly starting" do
@@ -45,6 +48,7 @@ RSpec.describe Pagy::Backend do
       expect(records.first.name).to eq("user4")
       expect(records.last.name).to eq("user1")
       expect(pagy.has_more?).to eq(false)
+      expect(pagy.next_position).to be(nil)
     end
 
     it "paginates with after" do
@@ -53,6 +57,7 @@ RSpec.describe Pagy::Backend do
       expect(records.first.name).to eq("user31")
       expect(records.last.name).to eq("user50")
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with after nearly ending" do
@@ -61,6 +66,7 @@ RSpec.describe Pagy::Backend do
       expect(records.first.name).to eq("user91")
       expect(records.last.name).to eq("user100")
       expect(pagy.has_more?).to eq(false)
+      expect(pagy.next_position).to be(nil)
     end
 
     it 'returns a chainable relation' do
@@ -97,6 +103,7 @@ RSpec.describe Pagy::Backend do
          "user90", "user89", "user88", "user87", "user86",
          "user85", "user84", "user83", "user82"])
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
       expect(pagy.order[:updated_at]).to eq(:desc)
     end
   end

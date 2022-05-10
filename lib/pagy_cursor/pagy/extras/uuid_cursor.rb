@@ -8,6 +8,7 @@ class Pagy
       pagy = Pagy::Cursor.new(pagy_uuid_cursor_get_vars(collection, vars))
       items =  pagy_uuid_cursor_get_items(collection, pagy, pagy.position)
       pagy.has_more =  pagy_uuid_cursor_has_more?(items, pagy)
+      pagy.next_position = next_position(items, pagy) if pagy.has_more?
 
       return pagy, items
     end
@@ -35,8 +36,11 @@ class Pagy
     def pagy_uuid_cursor_has_more?(collection, pagy)
       return false if collection.empty?
 
-      next_position = collection.last[pagy.primary_key]
-      pagy_uuid_cursor_get_items(collection, pagy, next_position).exists?
+      pagy_uuid_cursor_get_items(collection, pagy, next_position(collection, pagy)).exists?
+    end
+
+    def next_position(collection, pagy)
+      collection.last[pagy.primary_key]
     end
   end
 end

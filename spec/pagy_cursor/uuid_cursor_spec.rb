@@ -28,6 +28,7 @@ RSpec.describe PagyCursor do
          "post90", "post89", "post88", "post87", "post86",
          "post85", "post84", "post83", "post82", "post81"])
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with before" do
@@ -36,6 +37,7 @@ RSpec.describe PagyCursor do
       expect(records.first.title).to eq("post29")
       expect(records.last.title).to eq("post10")
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with before nearly starting" do
@@ -44,6 +46,7 @@ RSpec.describe PagyCursor do
       expect(records.first.title).to eq("post4")
       expect(records.last.title).to eq("post1")
       expect(pagy.has_more?).to eq(false)
+      expect(pagy.next_position).to be(nil)
     end
 
     it "paginates with after" do
@@ -52,6 +55,7 @@ RSpec.describe PagyCursor do
       expect(records.first.title).to eq("post31")
       expect(records.last.title).to eq("post50")
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
     end
 
     it "paginates with before nearly starting" do
@@ -60,6 +64,7 @@ RSpec.describe PagyCursor do
       expect(records.first.title).to eq("post91")
       expect(records.last.title).to eq("post100")
       expect(pagy.has_more?).to eq(false)
+      expect(pagy.next_position).to be(nil)
     end
 
     it 'returns a chainable relation' do
@@ -94,6 +99,7 @@ RSpec.describe PagyCursor do
          "post90", "post89", "post88", "post87", "post86",
          "post85", "post84", "post83", "post82", "post81"])
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.next_position).to eq(records.last.id)
       expect(pagy.order[:updated_at]).to eq(:desc)
     end
   end
