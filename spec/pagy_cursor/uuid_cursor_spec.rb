@@ -63,7 +63,7 @@ RSpec.describe PagyCursor do
     end
 
     it 'returns a chainable relation' do
-      _, records = backend.send(:pagy_cursor, User.all)
+      _, records = backend.send(:pagy_uuid_cursor, User.all)
  
       expect(records).to be_a(ActiveRecord::Relation)
     end
