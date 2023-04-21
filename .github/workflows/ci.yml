@@ -25,19 +25,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby-version: 2.5
-            env:
-              BUNDLE_GEMFILE: gemfiles/active_record_50.gemfile
-          - ruby-version: 2.6
-            env:
-              BUNDLE_GEMFILE: gemfiles/active_record_51.gemfile
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_52.gemfile
           - ruby-version: 2.7
-            env:
-              BUNDLE_GEMFILE: gemfiles/active_record_60.gemfile
-          - ruby-version: 3.0
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_61.gemfile
           - ruby-version: 3.1
@@ -80,18 +71,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - ruby-version: 2.5
-            env:
-              BUNDLE_GEMFILE: gemfiles/active_record_50.gemfile
-          - ruby-version: 2.6
-            env:
-              BUNDLE_GEMFILE: gemfiles/active_record_51.gemfile
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_52.gemfile
           - ruby-version: 3.0
             env:
-              BUNDLE_GEMFILE: gemfiles/active_record_60.gemfile
+              BUNDLE_GEMFILE: gemfiles/active_record_61.gemfile
           - ruby-version: 3.1
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
