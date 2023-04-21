@@ -2,13 +2,7 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem "rails", "~> 7.0"
-
-# The gem rails doesn't depend on sprockets-rails from version 7.
-# https://guides.rubyonrails.org/7_0_release_notes.html#railties-notable-changes
-# Add "sprockets-rails" because the configuration for testing contains items that depend on "sprockets-rails".
-gem "sprockets-rails"
-
+gem "rails", "~> 7.0.0"
 gem "pg"
 gem "sqlite3"
 gem "mysql2"
