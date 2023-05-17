@@ -34,12 +34,14 @@ jobs:
           - ruby-version: 3.1
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
-
+          - ruby-version: 3.2
+            env:
+              BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
       fail-fast: false
     env: ${{ matrix.env }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -74,16 +76,19 @@ jobs:
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_52.gemfile
-          - ruby-version: 3.0
+          - ruby-version: "3.0"
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_61.gemfile
           - ruby-version: 3.1
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
+          - ruby-version: 3.2
+            env:
+              BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
       fail-fast: false
     env: ${{ matrix.env }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
