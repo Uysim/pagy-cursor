@@ -23,9 +23,22 @@ class Pagy
       if position.present?
         arel_table = pagy.arel_table
 
-        select_created_at = arel_table.project(arel_table[:created_at]).where(arel_table[pagy.primary_key].eq(position))
-        select_the_sample_created_at = arel_table[:created_at].eq(select_created_at).and(arel_table[pagy.primary_key].send(pagy.comparation, position))
-        sql_comparation = arel_table[:created_at].send(pagy.comparation, select_created_at).or(select_the_sample_created_at)
+        # If the primary sort key is not "created_at"
+
+        # Select the primary sort key
+        # pagy.order should be something like:
+        #  [:created_at, :id] or [:foo_column, ..., :created_at, :id]
+        primary_sort_key = pagy.order.keys.detect{ |order_key| ![:created_at, :id].include?(order_key.to_sym) } || :created_at
+
+        select_previous_row = arel_table.project(arel_table[primary_sort_key]).
+          where(arel_table[pagy.primary_key].eq(position))
+
+        sql_comparation = arel_table[primary_sort_key].
+          send(pagy.comparation, select_previous_row).
+          or(
+            arel_table[primary_sort_key].eq(select_previous_row).
+            and(arel_table[pagy.primary_key].send(pagy.comparation, position))
+          )
 
         collection = collection.where(sql_comparation)
       end
