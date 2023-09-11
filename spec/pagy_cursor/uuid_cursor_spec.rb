@@ -76,8 +76,12 @@ RSpec.describe PagyCursor do
         Post.create!(title: "post#{i}", created_at: (100-i).minutes.ago)
       end
       sleep 1 # delay for mysql timestamp
+      post = Post.find_by(title: "post81")
+      post.update(title: "post81 was updated")
+
+      sleep 1 # delay for mysql timestamp
       post = Post.find_by(title: "post91")
-      post.update(title: "This is post91")
+      post.update(title: "post91 was updated")
     end
 
     it "paginates with defaults" do
@@ -89,11 +93,46 @@ RSpec.describe PagyCursor do
         }
       )
       expect(records.map(&:title)).to eq(
-        ["This is post91", "post100", "post99", "post98", "post97", "post96",
-         "post95", "post94", "post93", "post92",
-         "post90", "post89", "post88", "post87", "post86",
-         "post85", "post84", "post83", "post82", "post81"])
+        ["post91 was updated", "post81 was updated","post100", "post99", "post98",
+         "post97", "post96", "post95", "post94", "post93",
+         "post92", "post90", "post89", "post88", "post87",
+         "post86", "post85", "post84", "post83", "post82",])
       expect(pagy.has_more?).to eq(true)
+      expect(pagy.order[:updated_at]).to eq(:desc)
+    end
+
+    it "paginates with before updated record" do
+      previous_record = Post.find_by(title: "post91 was updated")
+      pagy, records = backend.send(
+        :pagy_uuid_cursor,
+        Post.all,
+        order: {
+          updated_at: :desc
+        },
+        before: previous_record.id
+      )
+      expect(records.map(&:title)).to eq(
+        ["post81 was updated", "post100", "post99", "post98", "post97",
+         "post96", "post95", "post94", "post93", "post92",
+         "post90", "post89", "post88", "post87", "post86",
+         "post85", "post84", "post83", "post82", "post80"
+        ])
+      expect(pagy.has_more?).to eq(true)
+      expect(pagy.order[:updated_at]).to eq(:desc)
+    end
+
+    it "paginates with after updated record" do
+      previous_record = Post.find_by(title: "post91 was updated")
+      pagy, records = backend.send(
+        :pagy_uuid_cursor,
+        Post.all,
+        order: {
+          updated_at: :desc
+        },
+        after: previous_record.id
+      )
+      expect(records.map(&:title)).to eq([])
+      expect(pagy.has_more?).to eq(false)
       expect(pagy.order[:updated_at]).to eq(:desc)
     end
   end
