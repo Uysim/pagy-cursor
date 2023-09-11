@@ -55,6 +55,7 @@ pagy_cursor(Post.all, after: 10, order: {updated_at: :desc})
 
 Many thanks to:
 - [Uysim](https://github.com/Uysim)
+- [Hirokazu Hata](https://github.com/h-michael)
 - [M. Yunan Helmy](https://github.com/yunanhelmy)
 - [Eumir Gaspar](https://github.com/corroded)
 
@@ -73,7 +74,7 @@ To run tests in root folder of gem:
 - ```bundle exec rspec ```
 
 To test on specific Rails version
-```export BUNDLE_GEMFILE=gemfiles/active_record_52.gemfile``` to work with Rails 5.2
+```export BUNDLE_GEMFILE=gemfiles/active_record_70.gemfile``` to work with Rails 7
 
 To play with app cd test/dummy and rails s -b 0.0.0.0 (before rails db:migrate).
 
