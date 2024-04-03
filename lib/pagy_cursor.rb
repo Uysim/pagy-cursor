@@ -4,5 +4,5 @@ require "pagy_cursor/pagy/extras/cursor"
 require "pagy_cursor/pagy/extras/uuid_cursor"
 
 module PagyCursor
-  VERSION = "0.6.1"
+  VERSION = "0.7.0"
 end
