@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Uysim"]
   spec.email         = ["uysimty@gmail.com"]
 
-  spec.summary       = "cursor paginations for pagy"
-  spec.description   = "use pagy for cursor paginations with rails"
+  spec.summary       = "cursor-based pagination for pagy"
+  spec.description   = "use pagy for cursor-based pagination with rails"
   spec.homepage      = "https://github.com/Uysim/pagy-cursor"
   spec.license       = "MIT"
 
@@ -22,10 +22,10 @@ Gem::Specification.new do |spec|
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_dependency "pagy", ">= 6", "< 7"
+  spec.add_dependency "pagy", ">= 6"
   spec.add_dependency "activerecord", ">= 5"
 
-  spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency "bundler", "~> 2"
+  spec.add_development_dependency "rake", "~> 13"
+  spec.add_development_dependency "rspec", "~> 3"
 end
