@@ -3,7 +3,7 @@ PATH
   specs:
     pagy_cursor (0.7.0)
       activerecord (>= 5)
-      pagy (>= 6)
+      pagy (>= 6, < 9)
 
 GEM
   remote: https://rubygems.org/

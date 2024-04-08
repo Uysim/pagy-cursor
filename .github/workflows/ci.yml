@@ -79,7 +79,7 @@ jobs:
           - ruby-version: 2.7
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_52.gemfile
-          - ruby-version: "3.0"
+          - ruby-version: 3.0
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_61.gemfile
           - ruby-version: 3.1
@@ -88,6 +88,9 @@ jobs:
           - ruby-version: 3.2
             env:
               BUNDLE_GEMFILE: gemfiles/active_record_70.gemfile
+          - ruby-version: 3.3
+            env:
+              BUNDLE_GEMFILE: gemfiles/active_record_71.gemfile
       fail-fast: false
     env: ${{ matrix.env }}
     steps:
