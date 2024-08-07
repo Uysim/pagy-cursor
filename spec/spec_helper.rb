@@ -1,7 +1,6 @@
 ENV["RAILS_ENV"] = "test"
 ENV["DB"] ||= "sqlite3"
-require 'rails/all'
-require "rails/test_help"
+require 'rails'
 require "pagy_cursor"
 require "dummy/config/environment"
 
