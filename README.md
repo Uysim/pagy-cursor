@@ -58,6 +58,7 @@ Many thanks to:
 - [Hirokazu Hata](https://github.com/h-michael)
 - [M. Yunan Helmy](https://github.com/yunanhelmy)
 - [Eumir Gaspar](https://github.com/corroded)
+- [Jasl](https://github.com/jasl)
 
 ## Support Databases
 
